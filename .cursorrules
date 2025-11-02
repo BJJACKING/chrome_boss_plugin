@@ -1,0 +1,148 @@
+# Chrome 插件开发规范 - 简历筛选插件
+
+## 项目概述
+开发一个 Chrome 浏览器插件，用于帮助用户在招聘网站（如 BOSS 直聘）筛选简历，提高筛选效率。
+
+## 技术栈
+- **前端**: HTML5, CSS3, JavaScript (ES6+)
+- **Chrome Extension API**: Manifest V3
+- **存储**: Chrome Storage API
+- **UI框架**: 原生 JavaScript + CSS（轻量级，无需外部依赖）
+
+## 项目结构
+```
+chrome_boss_plugin/
+├── manifest.json              # 插件配置文件
+├── popup/                   # 弹窗页面
+│   ├── popup.html
+│   ├── popup.js
+│   └── popup.css
+├── content/                 # 内容脚本
+│   ├── content.js           # 主要筛选逻辑
+│   └── content.css          # 样式文件
+├── background/              # 后台服务
+│   └── background.js        # Service Worker
+├── options/                 # 选项页面
+│   ├── options.html
+│   ├── options.js
+│   └── options.css
+├── icons/                   # 图标资源
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
+└── README.md                # 项目说明
+```
+
+## 开发规范
+
+### 代码风格
+- 使用 ES6+ 语法
+- 使用 `const` 和 `let`，避免使用 `var`
+- 使用箭头函数和 async/await
+- 代码注释使用中文
+- 变量和函数命名采用驼峰命名法
+- 常量使用大写下划线命名
+
+### Chrome Extension 规范
+- 使用 Manifest V3 格式
+- Content Script 需要最小化权限
+- 使用 Chrome Storage API 保存用户配置
+- 所有异步操作使用 Promise 或 async/await
+- 错误处理要完善，使用 try-catch
+
+### 筛选功能要求
+1. **简历筛选规则**：
+   - 学历筛选（大专/本科/硕士/博士）
+   - 工作经验筛选（1年/3年/5年等）
+   - 薪资范围筛选
+   - 关键词筛选（包含/排除特定关键词）
+   - 年龄筛选
+
+2. **交互功能**：
+   - 在页面中高亮符合条件的简历
+   - 自动隐藏不符合条件的简历
+   - 显示筛选统计信息
+   - 支持一键清除筛选
+
+3. **配置管理**：
+   - 配置保存到 Chrome Storage
+   - 支持导入/导出配置
+   - 支持多套筛选规则预设
+
+### UI/UX 要求
+- 界面简洁美观，符合现代设计风格
+- 使用柔和的配色方案
+- 响应式设计，适配不同屏幕尺寸
+- 操作反馈明确（成功/失败提示）
+- 支持键盘快捷键
+
+### 性能优化
+- 避免频繁的 DOM 操作，使用批量更新
+- 使用事件委托减少事件监听器
+- 合理使用防抖和节流
+- 避免内存泄漏
+
+### 安全规范
+- 不收集用户隐私数据
+- 不向外部服务器发送数据（除非用户明确同意）
+- 所有用户输入进行验证和清理
+- 使用 HTTPS 协议（如需要外部资源）
+
+## 开发环境
+
+### Conda 虚拟环境
+- **环境名称**: `chrome_boss_plugin-py3.11`
+- **Python 版本**: 3.11.11
+- **环境路径**: `/opt/anaconda3/envs/chrome_boss_plugin-py3.11`
+
+### 环境管理
+```bash
+# 激活环境
+conda activate chrome_boss_plugin-py3.11
+
+# 从配置文件创建环境（首次或重建）
+conda env create -f environment.yml
+
+# 更新环境配置
+conda env update -f environment.yml --prune
+```
+
+### Python 依赖
+- **Pillow** (>=11.0): 用于生成插件图标
+
+### 工具脚本
+- `generate_icons.py`: 生成 Chrome 插件图标（16x16, 48x48, 128x128）
+  - 使用方法: `python generate_icons.py`
+  - 需要激活 conda 环境
+
+### 环境配置文件
+- `environment.yml`: Conda 环境配置文件
+- `.gitignore`: Git 忽略文件配置
+
+## 开发流程
+1. 先创建基础结构（manifest.json, 基础文件）
+2. 实现核心筛选逻辑
+3. 实现用户界面
+4. 实现配置管理
+5. 测试和优化
+
+## 注释规范
+- 函数注释：说明功能、参数、返回值
+- 复杂逻辑：添加行内注释
+- TODO 标记：使用 `// TODO: 说明` 格式
+
+## 文件命名
+- HTML 文件：小写 + 连字符（如 `popup.html`）
+- JavaScript 文件：小写 + 连字符（如 `content-script.js`）
+- CSS 文件：小写 + 连字符（如 `popup-style.css`）
+- 图片资源：描述性名称（如 `icon-48.png`）
+
+## Git 提交规范
+- feat: 新功能
+- fix: 修复bug
+- docs: 文档更新
+- style: 代码格式调整
+- refactor: 重构
+- test: 测试相关
+- chore: 构建/工具相关
+

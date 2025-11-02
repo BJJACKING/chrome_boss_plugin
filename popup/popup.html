@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简历筛选助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>📋 简历筛选助手</h1>
+      <p class="subtitle">快速筛选符合条件的简历</p>
+    </header>
+
+    <div class="status-section">
+      <div class="status-indicator" id="statusIndicator">
+        <span class="status-dot"></span>
+        <span class="status-text" id="statusText">未激活</span>
+      </div>
+      <div class="stats" id="stats" style="display: none;">
+        <div class="stat-item">
+          <span class="stat-label">符合条件:</span>
+          <span class="stat-value" id="matchedCount">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">不符合:</span>
+          <span class="stat-value" id="unmatchedCount">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-settings">
+      <div class="setting-item">
+        <label class="switch">
+          <input type="checkbox" id="enableFilter">
+          <span class="slider"></span>
+        </label>
+        <label for="enableFilter" class="setting-label">启用筛选</label>
+      </div>
+      <div class="setting-item">
+        <label class="switch">
+          <input type="checkbox" id="hideUnmatched">
+          <span class="slider"></span>
+        </label>
+        <label for="hideUnmatched" class="setting-label">隐藏不符合条件的简历</label>
+      </div>
+      <div class="setting-item">
+        <label class="switch">
+          <input type="checkbox" id="highlightMatched">
+          <span class="slider"></span>
+        </label>
+        <label for="highlightMatched" class="setting-label">高亮符合条件的简历</label>
+      </div>
+    </div>
+
+    <div class="quick-filters">
+      <h3>快速筛选</h3>
+      <div class="filter-group">
+        <label>学历要求:</label>
+        <select id="educationFilter" class="filter-select">
+          <option value="">不限</option>
+          <option value="大专">大专及以上</option>
+          <option value="本科">本科及以上</option>
+          <option value="硕士">硕士及以上</option>
+          <option value="博士">博士</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>工作经验:</label>
+        <select id="experienceFilter" class="filter-select">
+          <option value="">不限</option>
+          <option value="1">1年以上</option>
+          <option value="3">3年以上</option>
+          <option value="5">5年以上</option>
+          <option value="10">10年以上</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>关键词包含:</label>
+        <input type="text" id="keywordsInclude" class="filter-input" placeholder="用逗号分隔多个关键词">
+      </div>
+      <div class="filter-group">
+        <label>关键词排除:</label>
+        <input type="text" id="keywordsExclude" class="filter-input" placeholder="用逗号分隔多个关键词">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="applyFilter" class="btn btn-primary">应用筛选</button>
+      <button id="clearFilter" class="btn btn-secondary">清除筛选</button>
+      <button id="openOptions" class="btn btn-link">高级设置</button>
+    </div>
+
+    <footer class="footer">
+      <p>当前页面: <span id="currentPage">-</span></p>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
+

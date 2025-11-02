@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简历筛选助手 - 高级设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>⚙️ 高级设置</h1>
+      <p class="subtitle">自定义筛选规则和预设</p>
+    </header>
+
+    <div class="content">
+      <section class="settings-section">
+        <h2>筛选规则</h2>
+        
+        <div class="form-group">
+          <label for="education">学历要求</label>
+          <select id="education" class="form-control">
+            <option value="">不限</option>
+            <option value="大专">大专及以上</option>
+            <option value="本科">本科及以上</option>
+            <option value="硕士">硕士及以上</option>
+            <option value="博士">博士</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">工作经验（年）</label>
+          <input type="number" id="experience" class="form-control" min="0" placeholder="例如: 3">
+        </div>
+
+        <div class="form-group">
+          <label for="salaryMin">薪资范围（K/月）</label>
+          <div class="input-group">
+            <input type="number" id="salaryMin" class="form-control" min="0" placeholder="最低">
+            <span class="input-separator">-</span>
+            <input type="number" id="salaryMax" class="form-control" min="0" placeholder="最高">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ageMin">年龄范围（岁）</label>
+          <div class="input-group">
+            <input type="number" id="ageMin" class="form-control" min="18" max="65" placeholder="最低">
+            <span class="input-separator">-</span>
+            <input type="number" id="ageMax" class="form-control" min="18" max="65" placeholder="最高">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="keywordsInclude">关键词包含（用逗号分隔）</label>
+          <textarea id="keywordsInclude" class="form-control" rows="3" placeholder="例如: Java, Spring, 微服务"></textarea>
+          <small class="form-text">简历必须包含所有关键词</small>
+        </div>
+
+        <div class="form-group">
+          <label for="keywordsExclude">关键词排除（用逗号分隔）</label>
+          <textarea id="keywordsExclude" class="form-control" rows="3" placeholder="例如: 外包, 996"></textarea>
+          <small class="form-text">包含任一关键词的简历将被过滤</small>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>显示选项</h2>
+        
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="hideUnmatched">
+            <span>隐藏不符合条件的简历</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="highlightMatched">
+            <span>高亮符合条件的简历</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="showStatsBar">
+            <span>显示筛选统计信息条</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>预设管理</h2>
+        
+        <div class="preset-controls">
+          <select id="presetSelect" class="form-control">
+            <option value="">选择预设...</option>
+            <option value="default">默认预设</option>
+            <option value="senior">高级工程师</option>
+            <option value="junior">初级工程师</option>
+          </select>
+          <button id="savePreset" class="btn btn-primary">保存为预设</button>
+          <button id="loadPreset" class="btn btn-secondary">加载预设</button>
+          <button id="deletePreset" class="btn btn-danger">删除预设</button>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>数据管理</h2>
+        
+        <div class="data-controls">
+          <button id="exportSettings" class="btn btn-outline">导出配置</button>
+          <button id="importSettings" class="btn btn-outline">导入配置</button>
+          <input type="file" id="importFile" accept=".json" style="display: none;">
+          <button id="resetSettings" class="btn btn-danger">重置为默认</button>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button id="saveSettings" class="btn btn-primary btn-large">保存设置</button>
+        <button id="cancelSettings" class="btn btn-secondary btn-large">取消</button>
+      </div>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
+
